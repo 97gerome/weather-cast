@@ -1,12 +1,17 @@
 import './App.css';
 
 //Import Components
-import NavBar from './NavBar';
+import TopBar from './TopBar';
+import SearchBar from './SearchBar';
 
 function App() {
+
   return (
     <div className="App">
-        <NavBar />
+      <TopBar />
+      <main>
+        <SearchBar />
+      </main>
     </div>
   );
 }

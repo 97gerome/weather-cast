@@ -1,0 +1,18 @@
+.search-bar{
+    width: 55vw;
+    height: 40px;
+    border-radius: 20px;
+    background-color: darkgrey;
+}
+
+.search-bar form{
+    height: 100%;
+}
+
+.search-bar input[type=text]{
+    border: none;
+    outline: none;
+    height: 100%;
+    padding: 0;
+    background-color: transparent;
+}
