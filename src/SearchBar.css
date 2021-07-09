@@ -5,10 +5,6 @@
     background-color: darkgrey;
 }
 
-.search-bar form{
-    height: 100%;
-}
-
 .search-bar input[type=text]{
     border: none;
     outline: none;

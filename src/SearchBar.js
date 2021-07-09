@@ -1,21 +1,24 @@
-import {useState, useCallback} from 'react';
+import {useMemo, useState, useEffect} from 'react';
 import debounce from 'lodash.debounce';
 
 import './SearchBar.css'
 
-const SearchBar = () => {
+const SearchBar = (props) => {
 
-    const debouncedAPICall = useCallback(
-        debounce((debouncedSearchItem) => console.log(debouncedSearchItem), 700),
-        []
-    );
+    const {setSearchItem, searchResults} = props;
 
-    const changeHandler = (e) => debouncedAPICall(e.target.value)
+    const debouncedSetState = useMemo(
+        () => debounce(text => setSearchItem(text), 800)
+    , [setSearchItem]);
+
+    const changeHandler = (e) => {
+        debouncedSetState(e.target.value);
+    }
+
     return (
         <div className="search-bar">
-            <form >
-                <input type="text" onChange = {changeHandler}/>
-            </form>
+            <input type="text" onChange = {changeHandler}/>
+            <div className="search-results"></div>
         </div>
     )
 }
