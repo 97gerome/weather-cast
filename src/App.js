@@ -19,11 +19,13 @@ function App() {
   useEffect(() => {  
     if (searchItem){
       axios.get(url)
-        .then(function (response) {
-          response.data.length > 0 ? setSearchResults(response.data) : console.log("none");
+        .then(response => {
+          if (response.data.length > 0){
+            setSearchResults(response.data);
+          }
         })
-        .catch(function (error) {
-          console.log(error);
+        .catch(error => {
+          throw new Error(error.message);
         });
     }
   }, [searchItem, url]);
@@ -34,7 +36,7 @@ function App() {
     <div className="App">
       <TopBar />
       <main>
-        <SearchBar setSearchItem ={setSearchItem} searchResults={searchResults}/>
+        <SearchBar setSearchItem ={setSearchItem} searchResults={searchResults} />
       </main>
     </div>
   );
