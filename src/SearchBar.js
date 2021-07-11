@@ -1,37 +1,23 @@
 import {useMemo, useState, useEffect} from 'react';
 import debounce from 'lodash.debounce';
+import SearchResults from './SearchResults';
 
 import './SearchBar.css'
 
 const SearchBar = (props) => {
 
-    const {setSearchItem, searchResults} = props;
+    const {setSearchItem, searchResults, setWeatherCoordinates, resultsVisibility} = props;
 
     const debouncedSetState = useMemo(
         () => debounce(text => setSearchItem(text), 800)
     , [setSearchItem]);
 
-    const changeHandler = (e) => {
-        debouncedSetState(e.target.value);
-    }
-
     return (
         <div className="search-container">
             <div className="search-bar">
-                <input type="text" onChange = {changeHandler}/>
+                <input type="text" onChange = {e => debouncedSetState(e.target.value)}/>
             </div>
-            <div className="search-results">
-                {searchResults.length > 0 && (
-                    searchResults.map((arrItem, index) => {
-                        let {name, country} = arrItem;
-                        return (
-                            <div className="search-result" key={index}>{name}, {country}
-                                <img src={`https://www.countryflags.io/${country}/flat/64.png`}></img>
-                            </div>
-                        );
-                    })
-                )}
-            </div>
+            {resultsVisibility && <SearchResults searchResults = {searchResults} setWeatherCoordinates = {setWeatherCoordinates}/>}
         </div>
     )
 }
