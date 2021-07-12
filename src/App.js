@@ -39,7 +39,6 @@ function App() {
   }, [searchItem]);
 
   useEffect(() => {
-    //toggle search results visibility when a country is selected
     toggleResultsVisibility(false);
     axios.get(urlWeather)
       .then(response => {
