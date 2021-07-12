@@ -17,9 +17,14 @@ const SearchBar = (props) => {
             <div className="search-bar">
                 <input type="text" onChange = {e => debouncedSetState(e.target.value)}/>
             </div>
-            {resultsVisibility && <SearchResults searchResults = {searchResults} setWeatherCoordinates = {setWeatherCoordinates}/>}
+            {resultsVisibility && 
+                <SearchResults 
+                    searchResults = {searchResults} 
+                    setWeatherCoordinates = {setWeatherCoordinates}
+                />
+            }
         </div>
     )
 }
 
-export default SearchBar
+export default SearchBar;
