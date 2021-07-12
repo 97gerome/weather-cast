@@ -21,7 +21,8 @@ function App() {
   const urlGeo = `http://api.openweathermap.org/geo/1.0/direct?q=${searchItem}&limit=5&appid=${apiKey}`;
   const urlWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${weatherCoordinates.lat}&lon=${weatherCoordinates.lon}&units=${tempUnit}&appid=${apiKey}`;
 
-  useEffect(() => {  
+  useEffect(() => {
+    toggleResultsVisibility(false);
     if (searchItem){
       axios.get(urlGeo)
         .then(response => {
@@ -29,13 +30,11 @@ function App() {
             setSearchResults(response.data);
             toggleResultsVisibility(true);
           }
-          else toggleResultsVisibility(false);
         })
         .catch(error => {
           throw new Error(error.message);
         });
     }
-    else toggleResultsVisibility(false);
   }, [searchItem]);
 
   useEffect(() => {
