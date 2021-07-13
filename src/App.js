@@ -67,6 +67,7 @@ function App() {
         <WeatherCard 
           location={weatherCoordinates.loc}
           weatherData={weatherData}
+          tempUnit={tempUnit}
         />
       </main>
     </div>
