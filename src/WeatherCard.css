@@ -4,3 +4,13 @@
     border-radius: 20px;
     background-color: rgb(255 ,255 ,255, 0.4);
 }
+
+.location{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.current-temp{
+    font-size: 48px;
+    color: white;
+}
