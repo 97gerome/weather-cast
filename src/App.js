@@ -64,12 +64,10 @@ function App() {
           setWeatherCoordinates={setWeatherCoordinates} 
           resultsVisibility={resultsVisibility}
         />
-        {weatherData && weatherData.current && weatherData.current.weather &&
-          <WeatherCard 
-            location={weatherCoordinates.loc}
-            weatherData={weatherData}
-          />
-        }
+        <WeatherCard 
+          location={weatherCoordinates.loc}
+          weatherData={weatherData}
+        />
       </main>
     </div>
   );
