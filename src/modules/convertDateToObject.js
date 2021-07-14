@@ -1,10 +1,13 @@
-const convertDateToObject = (dt) => {
+const convertDateToObject = (dt, timezoneOffset) => {
     const daysArr = ["Sunday", "Monday", "Tuesday", "Thursday", "Friday", "Saturday"];
-    const dtObj = new Date(dt* 1000);
+    const localOffset = new Date().getTimezoneOffset();
+    const dtObj = new Date((dt + localOffset * 60 + timezoneOffset) * 1000);
+    
     return ({
         day: daysArr[dtObj.getDay()],
-        date: `${dtObj.getDate()}`,
-        month: `${dtObj.getMonth()}`
+        date: dtObj.getDate(),
+        month: dtObj.getMonth(),
+        hour: dtObj.getHours()
     });
 };
 
