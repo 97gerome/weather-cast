@@ -6,7 +6,8 @@ import './WeatherCard.css';
 
 const WeatherCard = (props) => {
 
-    const {location, weatherData, tempUnit} = props;   
+    const {location, weatherData, tempUnit} = props;
+    const {timezone_offset: timezoneOffset} = weatherData || "";   
     const {
         dt: currentDt, 
         temp: currentTemp, 
@@ -17,8 +18,9 @@ const WeatherCard = (props) => {
         temp: 0, 
         weather: [{description: "", icon: "01d"}]
     };
-    const {day: currentDay, date: currentDate, month: currentMonth} = convertDateToObject(currentDt);
+    const {day: currentDay, date: currentDate, month: currentMonth} = convertDateToObject(currentDt, timezoneOffset);
     const [{description: currentWeatherDesc, icon}] = currentWeather;
+    const {hourly: dayHourlyData} = weatherData || {hourly: []};
 
     return (
         <div className="weather-card">
@@ -28,9 +30,20 @@ const WeatherCard = (props) => {
                     <div className="current-weather-container">
                         <div className="current-dt">{currentDay}, {currentDate}/{currentMonth}</div>
                         <div className="current-temp">{currentTemp.toFixed()}°{tempUnit === "metric"? "C" : "F"}</div>
-                        <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`}/>
-                        <div className="current-weather">{currentWeatherDesc.charAt(0).toUpperCase() + currentWeatherDesc.slice(1)}</div>
+                        <div className="current-weather">
+                            <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`}/>
+                            {currentWeatherDesc.charAt(0).toUpperCase() + currentWeatherDesc.slice(1)}
+                        </div>
                     </div>
+                    {dayHourlyData.slice(0, 24).map((hourlyData, index) => {
+                        const {hour: hourlyTime} = convertDateToObject(hourlyData.dt, timezoneOffset);
+                        return (
+                            <div className="hourly-weather-container" key={index}>
+                                {hourlyData.temp.toFixed(0)}°
+                                {hourlyTime + ":00"}
+                            </div>
+                        );   
+                    })}
                 </>
             }
         </div>

@@ -5,12 +5,22 @@
     background-color: rgb(255 ,255 ,255, 0.4);
 }
 
+.weather-card img{
+    width: 50px;
+}
+
 .location{
     font-size: 24px;
     font-weight: bold;
 }
 
 .current-temp{
-    font-size: 48px;
+    font-size: 56px;
     color: white;
+}
+
+.current-weather{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
