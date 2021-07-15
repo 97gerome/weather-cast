@@ -21,6 +21,7 @@ const WeatherCard = (props) => {
     const {day: currentDay, date: currentDate, month: currentMonth} = convertDateToObject(currentDt, timezoneOffset);
     const [{description: currentWeatherDesc, icon}] = currentWeather;
     const {hourly: dayHourlyData} = weatherData || {hourly: []};
+    const {daily: weekDailyData} = weatherData || {daily: []};
 
     return (
         <div className="weather-card">
@@ -30,20 +31,43 @@ const WeatherCard = (props) => {
                     <div className="current-weather-container">
                         <div className="current-dt">{currentDay}, {currentDate}/{currentMonth}</div>
                         <div className="current-temp">{currentTemp.toFixed()}°{tempUnit === "metric"? "C" : "F"}</div>
-                        <div className="current-weather">
-                            <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`}/>
+                        <div className="current-weather-details">
+                            <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="current-weather-icon"/>
                             {currentWeatherDesc.charAt(0).toUpperCase() + currentWeatherDesc.slice(1)}
                         </div>
                     </div>
-                    {dayHourlyData.slice(0, 24).map((hourlyData, index) => {
-                        const {hour: hourlyTime} = convertDateToObject(hourlyData.dt, timezoneOffset);
-                        return (
-                            <div className="hourly-weather-container" key={index}>
-                                {hourlyData.temp.toFixed(0)}°
-                                {hourlyTime + ":00"}
-                            </div>
-                        );   
-                    })}
+                    <div className="hourly-weather-wrapper">
+                        {dayHourlyData.slice(0, 24).map((hourlyData, index) => {
+                            const {hour: hourlyTime, date: hourlyDate, month: hourlyMonth} = convertDateToObject(hourlyData.dt, timezoneOffset);
+                            const [{icon: hourlyWeatherIcon}] = hourlyData.weather;
+                            return (
+                                <div className="hourly-weather-container" key={index}>
+                                    <div className="hourly-weather-time">
+                                        {hourlyTime + ":00"}
+                                    </div>
+                                    <div className="hourly-weather-date">
+                                        {hourlyDate}/{hourlyMonth}
+                                    </div>
+                                    <div className="hourly-weather-details">
+                                        {hourlyData.temp.toFixed(0)}°
+                                        <img src={`http://openweathermap.org/img/wn/${hourlyWeatherIcon}@2x.png`} alt={`hourly-weather-icon-${index}`}/>
+                                    </div>
+                                </div>
+                            );   
+                        })}
+                    </div>
+                    <div className="daily-weather-wrapper">
+                        {weekDailyData.map((dailyData, index) => {
+                            const {day: dailyDay, date: dailyDate, month: dailyMonth} = convertDateToObject(dailyData.dt, timezoneOffset);
+                            const [{description: dailyWeatherDesc}] = dailyData.weather;
+                            return(
+                                <div className="daily-weather-container" key={index}>
+                                    {dailyDay}, {dailyDate}/{dailyMonth}
+                                    {dailyWeatherDesc}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </>
             }
         </div>

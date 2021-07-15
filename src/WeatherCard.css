@@ -1,11 +1,16 @@
 .weather-card{
-    width: 55vw;
+    width: calc(35vw - 4px);
     height: 80vh;
     border-radius: 20px;
     background-color: rgb(255 ,255 ,255, 0.4);
+    padding: 0 2px
 }
 
-.weather-card img{
+.location{
+    margin: 10px 0;
+}
+
+.current-weather-container img{
     width: 50px;
 }
 
@@ -15,12 +20,60 @@
 }
 
 .current-temp{
-    font-size: 56px;
+    font-size: 64px;
     color: white;
 }
 
-.current-weather{
+.current-weather-details{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.hourly-weather-wrapper{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    overflow-x: scroll;
+    margin: 10px 0;
+}
+
+.hourly-weather-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+.hourly-weather-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 2px;
+    padding: 2px;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255, 0.3);
+}
+
+.hourly-weather-container img{
+    width: 30px;
+}
+
+.hourly-weather-time{
+    padding: 0 2px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.hourly-weather-date{
+    padding: 0 2px;
+    color: gray;
+    text-align: left;
+    font-size: 9px;
+}
+
+.hourly-weather-details{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2px;
+    font-size: 16px;
+    color: gray;
 }
