@@ -1,13 +1,26 @@
 .weather-card{
+    display: flex;
+    flex-direction: column;
     width: calc(35vw - 4px);
     height: 80vh;
     border-radius: 20px;
     background-color: rgb(255 ,255 ,255, 0.4);
-    padding: 0 2px
+    padding: 0 2px;
+    overflow-y: hidden;
 }
 
-.location{
+.weather-card h4{
     margin: 10px 0;
+    flex-grow: 0;
+    padding: 0 10px;
+    text-align: left;
+    font-weight: 500;
+    color: dimgray;
+}
+
+
+.location{
+    margin: 15px 0;
 }
 
 .current-weather-container img{
@@ -33,6 +46,7 @@
 .hourly-weather-wrapper{
     display: flex;
     flex-direction: row;
+    flex-shrink: 0;
     width: 100%;
     overflow-x: scroll;
     margin: 10px 0;
@@ -40,15 +54,15 @@
 
 .hourly-weather-wrapper::-webkit-scrollbar {
     display: none;
-  }
+}
 
 .hourly-weather-container{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin: 2px;
-    padding: 2px;
-    border-radius: 5px;
+    padding: 4px;
+    border-radius: 10px;
     background-color: rgb(255, 255, 255, 0.3);
 }
 
@@ -76,4 +90,57 @@
     padding: 0 2px;
     font-size: 16px;
     color: gray;
+}
+
+.daily-weather-wrapper{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+
+.daily-weather-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.daily-weather-container{
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    width: 100%;
+    margin: 2px 0;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255, 0.3);
+}
+
+.daily-weather-date{
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+.daily-weather-details{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 12px;
+    color: gray;
+}
+
+.daily-weather-details img{
+    width: 40px;
+}
+
+.daily-weather-desc{
+    width: 80px;
+    padding: 0 10px;
+}
+
+.daily-temp-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    color: black;
 }
