@@ -50,10 +50,6 @@ function App() {
       })
   }, [weatherCoordinates]);
 
-  useEffect(() => {
-    console.log(weatherData);
-  }, [weatherData]);
-
   return (
     <div className="App">
       <TopBar />
