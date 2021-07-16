@@ -29,7 +29,7 @@ const WeatherCard = (props) => {
                 <>
                     <div className="location">{location}</div>
                     <div className="current-weather-container">
-                        <div className="current-dt">{currentDay}, {currentDate}/{currentMonth}</div>
+                        <div className="current-date">{currentDay}, {currentDate}/{currentMonth}</div>
                         <div className="current-temp">{currentTemp.toFixed()}°{tempUnit === "metric"? "C" : "F"}</div>
                         <div className="current-weather-details">
                             <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="current-weather-icon"/>
@@ -56,14 +56,31 @@ const WeatherCard = (props) => {
                             );   
                         })}
                     </div>
+                    <h4>7-Day Forecast</h4>
                     <div className="daily-weather-wrapper">
-                        {weekDailyData.map((dailyData, index) => {
+                        {weekDailyData.slice(1).map((dailyData, index) => {
                             const {day: dailyDay, date: dailyDate, month: dailyMonth} = convertDateToObject(dailyData.dt, timezoneOffset);
-                            const [{description: dailyWeatherDesc}] = dailyData.weather;
+                            const {min: dailyMinTemp, max: dailyMaxTemp} = dailyData.temp;
+                            const [{description: dailyWeatherDesc, icon: dailyWeatherIcon}] = dailyData.weather;
                             return(
                                 <div className="daily-weather-container" key={index}>
-                                    {dailyDay}, {dailyDate}/{dailyMonth}
-                                    {dailyWeatherDesc}
+                                    <div className="daily-weather-date">
+                                        {dailyDay}, {dailyDate}/{dailyMonth}
+                                    </div>
+                                    <div className="daily-weather-details">
+                                        <span className="daily-temp-details">
+                                            <span>
+                                                H: {dailyMaxTemp.toFixed(0)}°
+                                            </span>
+                                            <span>
+                                                L: {dailyMinTemp.toFixed(0)}°
+                                            </span>
+                                        </span>
+                                        <img src={`http://openweathermap.org/img/wn/${dailyWeatherIcon}@2x.png`} alt={`daily-weather-icon-${index}`}/>
+                                        <span className="daily-weather-desc">
+                                            {dailyWeatherDesc.charAt(0).toUpperCase() + dailyWeatherDesc.slice(1)}
+                                        </span>
+                                    </div>
                                 </div>
                             );
                         })}
