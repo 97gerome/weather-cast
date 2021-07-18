@@ -1,4 +1,5 @@
 .weather-card{
+    position: relative;
     display: flex;
     flex-direction: column;
     width: calc(35vw - 4px);
@@ -7,6 +8,19 @@
     background-color: rgb(255 ,255 ,255, 0.4);
     padding: 0 2px;
     overflow-y: hidden;
+}
+
+.weather-card * {
+    z-index: 2;
+}
+
+.weather-card:before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(5px);
+    z-index: 1;
 }
 
 .weather-card h4{
@@ -18,18 +32,14 @@
     color: dimgray;
 }
 
-
 .location{
     margin: 15px 0;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .current-weather-container img{
     width: 50px;
-}
-
-.location{
-    font-size: 24px;
-    font-weight: bold;
 }
 
 .current-temp{
