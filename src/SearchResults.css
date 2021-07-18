@@ -1,26 +1,27 @@
 .search-results{
+    position: absolute;
+    top: 0;
     border-radius: 20px;
     width: 100%;
+    padding-top: 45px;
     overflow: hidden;
-    background-color: rgb(255, 255, 255, 0.5);
-    top: 0;
-    position: absolute;
-    padding-top: 40px;
+    background-color: rgb(255, 255, 255, 0.8);
 }
 
 .search-result{
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
     height: 40px;
     cursor: pointer;
 }
 
-.search-result img{
-    height: 20px;
-    margin: 0 10px;
+.search-result:hover{
+    background-color: rgb(255, 255, 255, 0.5);
 }
 
-.search-result:hover{
-    background-color: rgb(118, 190, 232, 0.5);
+.search-result-details img{
+    height: 20px;
+    margin: 0 10px;
 }
