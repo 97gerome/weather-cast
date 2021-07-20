@@ -1,0 +1,52 @@
+.daily-forecast-wrapper{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+
+.daily-forecast-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.daily-forecast-container{
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    width: calc(100% - 4px);
+    margin: 2px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255, 0.3);
+}
+
+.daily-forecast-date{
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+.daily-forecast-details{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 12px;
+    color: gray;
+}
+
+.daily-forecast-details img{
+    width: 40px;
+}
+
+.daily-forecast-desc{
+    width: 80px;
+    padding: 0 10px;
+}
+
+.daily-temp-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    color: black;
+}
