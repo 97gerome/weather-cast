@@ -1,4 +1,4 @@
-import {useMemo, useState, useEffect} from 'react';
+import { useMemo } from 'react';
 import debounce from 'lodash.debounce';
 import SearchResults from './SearchResults';
 
@@ -19,15 +19,19 @@ const SearchBar = (props) => {
                 <div className="search-icon-wrapper">
                     <Search fontSize="small"/>
                 </div>
-                <input type="text" id="search_input" onChange = {e => debouncedSetState(e.target.value)} placeholder="Search by City"/>
-            </div>
-            {resultsVisibility && 
-                <SearchResults 
-                    setSearchItem = {setSearchItem}
-                    searchResults = {searchResults} 
-                    setWeatherCoordinates = {setWeatherCoordinates}
+                <input 
+                    type="text" 
+                    id="search_input" 
+                    onChange={e => debouncedSetState(e.target.value)} 
+                    placeholder="Search by City"
+                    autoComplete="off"
                 />
-            }
+            </div>
+            <SearchResults
+                searchResults={searchResults} 
+                setWeatherCoordinates={setWeatherCoordinates}
+                resultsVisibility={resultsVisibility}
+            />
         </div>
     )
 }
