@@ -1,0 +1,14 @@
+.current-weather-container img{
+    width: 50px;
+}
+
+.current-temp{
+    font-size: 64px;
+    color: white;
+}
+
+.current-weather-details{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
