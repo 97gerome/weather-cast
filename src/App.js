@@ -14,21 +14,22 @@ function App() {
   const [searchItem, setSearchItem] = useState("");
   const [tempUnit, setTempUnit] = useState("metric");
   const [searchResults, setSearchResults] = useState([]);
+  const [resultsVisibility, setResultsVisibility] = useState(false);
+  const [isWeatherCardLoading, setWeatherCardLoading] = useState(true);
   const [weatherCoordinates, setWeatherCoordinates] = useState({lat: 14.6042, lon: 120.9822, loc: "Manila, PH"});
-  const [resultsVisibility, toggleResultsVisibility] = useState(false);
   const [weatherData, setWeatherData] = useState({});
 
   const urlGeo = `http://api.openweathermap.org/geo/1.0/direct?q=${searchItem}&limit=5&appid=${apiKey}`;
   const urlWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${weatherCoordinates.lat}&lon=${weatherCoordinates.lon}&units=${tempUnit}&appid=${apiKey}`;
 
   useEffect(() => {
-    toggleResultsVisibility(false);
+    setResultsVisibility(false);
     if (searchItem){
       axios.get(urlGeo)
         .then(response => {
           if (response.data.length > 0){
             setSearchResults(response.data);
-            toggleResultsVisibility(true);
+            setResultsVisibility(true);
           }
         })
         .catch(error => {
@@ -38,11 +39,14 @@ function App() {
   }, [searchItem]);
 
   useEffect(() => {
-    toggleResultsVisibility(false);
+    document.getElementById("search_input").value = "";
+    setSearchItem("");
+    setWeatherCardLoading(true);
     axios.get(urlWeather)
       .then(response => {
         if (response){
           setWeatherData(response.data);
+          setWeatherCardLoading(false);
         }
       })
       .catch(error => {
@@ -56,12 +60,13 @@ function App() {
       <main>
         <SearchBar 
           setSearchItem ={setSearchItem} 
-          searchResults={searchResults} 
+          searchResults={searchResults}
           setWeatherCoordinates={setWeatherCoordinates} 
           resultsVisibility={resultsVisibility}
         />
         <WeatherCard 
           location={weatherCoordinates.loc}
+          isWeatherCardLoading={isWeatherCardLoading}
           weatherData={weatherData}
           tempUnit={tempUnit}
         />
