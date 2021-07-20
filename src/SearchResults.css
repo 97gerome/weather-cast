@@ -1,8 +1,8 @@
 .search-results{
     position: absolute;
     top: 0;
-    border-radius: 20px;
     width: 100%;
+    border-radius: 20px;
     padding-top: 45px;
     overflow: hidden;
     background-color: rgb(255, 255, 255, 0.8);
@@ -14,11 +14,18 @@
     align-items: center;
     justify-content: center;
     height: 40px;
-    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
 }
 
 .search-result:hover{
     background-color: rgb(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+.search-result-details{
+    display: flex;
+    align-items: center;
 }
 
 .search-result-details img{
