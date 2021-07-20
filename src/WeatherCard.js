@@ -1,98 +1,38 @@
-import { intersection } from 'lodash';
-import { useState, useEffect } from 'react';
-import convertDateToObject from './modules/convertDateToObject';
+import { useTransition, animated } from 'react-spring';
+import Loader from './Loader';
+import CurrentWeather from './CurrentWeather';
+import HourlyForecast from './HourlyForecast';
+import DailyForecast from './DailyForecast';
 
 import './WeatherCard.css';
 
 const WeatherCard = (props) => {
 
-    const {location, weatherData, tempUnit} = props;
-    const {timezone_offset: timezoneOffset} = weatherData || "";   
-    const {
-        dt: currentDt, 
-        temp: currentTemp, 
-        weather: currentWeather
-    } = weatherData.current || 
-    {
-        dt: "", 
-        temp: 0, 
-        weather: [{description: "", icon: "01d"}]
-    };
-    const {day: currentDay, date: currentDate, month: currentMonth} = convertDateToObject(currentDt, timezoneOffset);
-    const [{description: currentWeatherDesc, icon}] = currentWeather;
-    const {hourly: dayHourlyData} = weatherData || {hourly: []};
-    const {daily: weekDailyData} = weatherData || {daily: []};
+    const {location, isWeatherCardLoading, weatherData, tempUnit} = props;
+
+    const loaderFade = useTransition(isWeatherCardLoading, {
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+        config: { duration: 150 }
+    })
 
     return (
         <div className="weather-card">
-            {weatherData && weatherData.current && weatherData.current.weather &&
-                <>
+            {loaderFade((style, item) =>
+                item ?
+                <animated.div style={style} className="loader-wrapper">
+                    <Loader />
+                </animated.div>
+                : <>
                     <div className="location">{location}</div>
-                    <div className="current-weather-container">
-                        <div className="current-date">{currentDay}, {currentDate}/{currentMonth}</div>
-                        <div className="current-temp">{currentTemp.toFixed()}°{tempUnit === "metric"? "C" : "F"}</div>
-                        <div className="current-weather-details">
-                            <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="current-weather-icon"/>
-                            {currentWeatherDesc.charAt(0).toUpperCase() + currentWeatherDesc.slice(1)}
-                        </div>
-                    </div>
-                    <div className="hourly-weather-wrapper">
-                        {dayHourlyData.slice(0, 24).map((hourlyData, index) => {
-                            const {hour: hourlyTime, date: hourlyDate, month: hourlyMonth} = convertDateToObject(hourlyData.dt, timezoneOffset);
-                            const [{icon: hourlyWeatherIcon}] = hourlyData.weather;
-                            return (
-                                <div className="hourly-weather-container" key={index}>
-                                    <div className="hourly-weather-time">
-                                        {hourlyTime + ":00"}
-                                    </div>
-                                    <div className="hourly-weather-date">
-                                        {hourlyDate}/{hourlyMonth}
-                                    </div>
-                                    <div className="hourly-weather-details">
-                                        {hourlyData.temp.toFixed(0)}°
-                                        <img src={`http://openweathermap.org/img/wn/${hourlyWeatherIcon}@2x.png`} alt={`hourly-weather-icon-${index}`}/>
-                                    </div>
-                                </div>
-                            );   
-                        })}
-                    </div>
-                    <h4>7-Day Forecast</h4>
-                    <div className="daily-weather-wrapper">
-                        {weekDailyData.slice(1).map((dailyData, index) => {
-                            const {day: dailyDay, date: dailyDate, month: dailyMonth} = convertDateToObject(dailyData.dt, timezoneOffset);
-                            const {min: dailyMinTemp, max: dailyMaxTemp} = dailyData.temp;
-                            const [{description: dailyWeatherDesc, icon: dailyWeatherIcon}] = dailyData.weather;
-                            return(
-                                <div className="daily-weather-container" key={index}>
-                                    <div className="daily-weather-date">
-                                        {dailyDay}, {dailyDate}/{dailyMonth}
-                                    </div>
-                                    <div className="daily-weather-details">
-                                        <span className="daily-temp-details">
-                                            <span>
-                                                H: {dailyMaxTemp.toFixed(0)}°
-                                            </span>
-                                            <span>
-                                                L: {dailyMinTemp.toFixed(0)}°
-                                            </span>
-                                        </span>
-                                        <img src={`http://openweathermap.org/img/wn/${dailyWeatherIcon}@2x.png`} alt={`daily-weather-icon-${index}`}/>
-                                        <span className="daily-weather-desc">
-                                            {dailyWeatherDesc.charAt(0).toUpperCase() + dailyWeatherDesc.slice(1)}
-                                        </span>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                    <CurrentWeather weatherData={weatherData} tempUnit={tempUnit}/>
+                    <HourlyForecast weatherData={weatherData}/>
+                    <DailyForecast weatherData={weatherData}/>
                 </>
-            }
+            )}
         </div>
     );
 }
-
-WeatherCard.defaultProps = {
-
-};
 
 export default WeatherCard;
