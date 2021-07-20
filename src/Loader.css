@@ -1,0 +1,39 @@
+.rain-loader{
+    display: flex;
+    height: 70px;
+    width: 70px;
+    align-items: center;
+}
+
+#cloud{
+    animation: expand 1s infinite;
+    transform-origin: center;
+}
+
+#raindrop1{
+    animation: drop 1s 0.4s infinite; 
+}
+
+#raindrop2{
+    animation: drop 1s 0.5s infinite; 
+}
+
+#raindrop3{
+    animation: drop 1s 0.3s infinite; 
+}
+
+@keyframes expand {
+    0% {transform: scale(1)}
+    50% {transform: scale(1.1)}
+    60% {transform: scale(1.1)}
+    100% {transform: scale(1)}
+}
+
+@keyframes drop {
+    0% {transform: translate(0,0); opacity: 0}
+    15% {opacity: 1}
+    40% {transform: translate(0,0); opacity: 1}
+    70% {opacity: 0}
+    100% {transform: translate(50px, 150px); opacity: 0}
+    
+}
