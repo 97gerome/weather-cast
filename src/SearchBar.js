@@ -1,13 +1,23 @@
-import { useMemo } from 'react';
+import { useMemo, memo } from 'react';
+import { useTransition, animated } from 'react-spring';
 import debounce from 'lodash.debounce';
 import SearchResults from './SearchResults';
 
 import './SearchBar.css'
 import {Search} from '@material-ui/icons';
 
+const AnimatedSearchResults = animated(SearchResults);
+
 const SearchBar = (props) => {
 
     const {setSearchItem, searchResults, setWeatherCoordinates, resultsVisibility} = props;
+
+    const resultsTransition = useTransition(resultsVisibility, {
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+        config: { duration: 200 }
+    });
 
     const debouncedSetState = useMemo(
         () => debounce(text => setSearchItem(text), 800)
@@ -27,13 +37,16 @@ const SearchBar = (props) => {
                     autoComplete="off"
                 />
             </div>
-            <SearchResults
-                searchResults={searchResults} 
-                setWeatherCoordinates={setWeatherCoordinates}
-                resultsVisibility={resultsVisibility}
-            />
+            {resultsTransition((style, item) => 
+                item && 
+                <AnimatedSearchResults 
+                    style={style}
+                    searchResults={searchResults}
+                    setWeatherCoordinates={setWeatherCoordinates}
+                />
+            )}
         </div>
     )
 }
 
-export default SearchBar;
+export default memo(SearchBar);
