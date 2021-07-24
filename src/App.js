@@ -36,7 +36,7 @@ function App() {
           throw new Error(error.message);
         });
     }
-  }, [searchItem]);
+  }, [searchItem, urlGeo]);
 
   useEffect(() => {
     document.getElementById("search_input").value = "";
@@ -52,7 +52,7 @@ function App() {
       .catch(error => {
         throw new Error(error.message);
       })
-  }, [weatherCoordinates]);
+  }, [weatherCoordinates, tempUnit, urlWeather]);
 
   return (
     <div className="App">
@@ -63,12 +63,15 @@ function App() {
           searchResults={searchResults}
           setWeatherCoordinates={setWeatherCoordinates} 
           resultsVisibility={resultsVisibility}
+          tempUnit={tempUnit}
+          setTempUnit={setTempUnit}
         />
         <WeatherCard 
           location={weatherCoordinates.loc}
           isWeatherCardLoading={isWeatherCardLoading}
           weatherData={weatherData}
           tempUnit={tempUnit}
+          setTempUnit={setTempUnit}
         />
       </main>
     </div>
