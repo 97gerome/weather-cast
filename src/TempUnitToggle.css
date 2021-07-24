@@ -1,0 +1,38 @@
+.temp-unit-toggle-wrapper{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.temp-unit-toggle-container{
+    display: flex;
+    gap: 5px;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+
+.temp-unit{
+    display: inline-flex;
+    flex-grow: 0;
+    justify-content: center;
+    border-radius: 10px;
+    color: gray;
+}
+
+.current-temp-unit{
+    display: inline-flex;
+    flex-grow: 0;
+    justify-content: center;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+
+.current-temp-unit:before, .temp-unit:before{
+    content: "°"
+}
+
+.temp-unit:hover{
+    cursor: pointer;
+}
