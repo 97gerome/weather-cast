@@ -1,7 +1,7 @@
 .daily-forecast-wrapper{
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex-shrink: 1;
     overflow-y: scroll;
 }
 
@@ -11,10 +11,9 @@
 
 .daily-forecast-container{
     display: inline-flex;
-    flex-shrink: 0;
+    flex: 0 0 60px;
     align-items: center;
     justify-content: space-between;
-    height: 60px;
     width: calc(100% - 4px);
     margin: 2px;
     border-radius: 20px;
@@ -22,6 +21,7 @@
 }
 
 .daily-forecast-date{
+    text-align: left;
     padding: 0 15px;
     font-size: 14px;
 }
@@ -46,7 +46,8 @@
 .daily-temp-details{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 5px;
     height: 100%;
     color: black;
 }
