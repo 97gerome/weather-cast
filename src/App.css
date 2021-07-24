@@ -1,14 +1,23 @@
 .App {
   text-align: center;
-  display: grid;
 }
 
 main{
-  height: calc(100vh - 80px);
-  width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  height: calc(100vh - 80px);
+  width: 100vw;
   background-color: #76bee8;
 }
+
+/* For browser height lower than 560px */
+@media only screen 
+  and (max-height: 560px) {
+    
+    main{
+      height: auto;
+    }
+
+  }
