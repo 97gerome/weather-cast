@@ -1,5 +1,5 @@
 const convertDateToObject = (dt, timezoneOffset) => {
-    const daysArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const daysArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const localOffset = new Date().getTimezoneOffset();
     const dtObj = new Date((dt + localOffset * 60 + timezoneOffset) * 1000);
     
