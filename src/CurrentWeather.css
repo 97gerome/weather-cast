@@ -1,6 +1,7 @@
 .current-weather-container{
     display: flex;
     flex-direction: column;
+    z-index: 1;
 }
 
 .current-weather-container img{
