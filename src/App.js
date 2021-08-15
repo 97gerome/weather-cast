@@ -1,9 +1,10 @@
 //Import Components
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import TopBar from './TopBar';
 import SearchBar from './SearchBar';
 import WeatherCard from './WeatherCard';
+import Loader from './Loader';
 
 import './App.css';
 
@@ -17,7 +18,7 @@ function App() {
   const [resultsVisibility, setResultsVisibility] = useState(false);
   const [isWeatherCardLoading, setWeatherCardLoading] = useState(true);
   const [weatherCoordinates, setWeatherCoordinates] = useState({lat: 14.6042, lon: 120.9822, loc: "Manila, PH"});
-  const [weatherData, setWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState(null);
 
   const urlGeo = `http://api.openweathermap.org/geo/1.0/direct?q=${searchItem}&limit=5&appid=${apiKey}`;
   const urlWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${weatherCoordinates.lat}&lon=${weatherCoordinates.lon}&units=${tempUnit}&appid=${apiKey}`;
@@ -66,16 +67,21 @@ function App() {
           tempUnit={tempUnit}
           setTempUnit={setTempUnit}
         />
-        <WeatherCard 
-          location={weatherCoordinates.loc}
-          isWeatherCardLoading={isWeatherCardLoading}
-          weatherData={weatherData}
-          tempUnit={tempUnit}
-          setTempUnit={setTempUnit}
-        />
+        {isWeatherCardLoading ?
+          <div className="loader-wrapper">
+            <Loader />
+          </div>
+          : <WeatherCard 
+            location={weatherCoordinates.loc}
+            weatherData={weatherData}
+            tempUnit={tempUnit}
+            setTempUnit={setTempUnit}
+          />
+        }
       </main>
     </div>
   );
+
 }
 
 export default App;
