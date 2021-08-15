@@ -1,0 +1,22 @@
+.background-container{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+    z-index: 0;
+}
+
+#cloudy_svg, #atmoshphere_svg{
+    position: absolute;
+    bottom: 0px;
+}
+
+#thunderstorm_svg, #drizzle_svg, #clear_svg, #snow_svg, #rain_svg{
+    position: absolute;
+    top: 0;
+}
