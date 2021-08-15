@@ -2,9 +2,11 @@
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
+    gap: 4px;
     width: 100%;
     overflow-x: scroll;
     margin: 10px 0;
+    z-index: 1;
 }
 
 .hourly-forecast-wrapper::-webkit-scrollbar {
@@ -16,10 +18,9 @@
     flex-direction: column;
     justify-content: space-between;
     height: 56px;
-    margin: 2px;
     padding: 4px;
     border-radius: 10px;
-    background-color: rgb(255, 255, 255, 0.3);
+    background-color: rgb(255, 255, 255, 0.4);
 }
 
 .hourly-forecast-container img{
@@ -34,7 +35,7 @@
 
 .hourly-forecast-date{
     padding: 0 2px;
-    color: gray;
+    color: rgb(50, 50, 50);
     text-align: left;
     font-size: 9px;
 }
@@ -45,5 +46,5 @@
     justify-content: center;
     padding: 0 2px;
     font-size: 16px;
-    color: gray;
+    color: rgb(70, 70, 70);
 }
