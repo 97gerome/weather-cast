@@ -1,4 +1,4 @@
-
+import logo from './images/weather-cast_logo.svg';
 
 import './TopBar.css'
 
@@ -6,9 +6,7 @@ const TopBar = () => {
 
     return (
         <header className="top-bar">
-            <div>
-                <h1>weather-cast</h1>
-            </div>
+            <img src={logo} alt={logo} className="app-logo"/>
         </header>
     );
 
