@@ -719,7 +719,6 @@ const ClearWeather = (props) => {
             <svg id="clear_svg" height="100%" viewBox="0 0 414 736" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {springs.map((spring, index) => (
                     <animated.g key={index} style={{...spring, transformOrigin: "50% 178px"}}>
-                        {console.log(spring)}
                         {moonComponentsArr[index]}
                     </animated.g>
                 ))}
