@@ -1,0 +1,17 @@
+<svg width="550" height="550" viewBox="0 0 550 550" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="weather-cast app icon">
+<rect width="550" height="550" rx="150" fill="#7DC4E8"/>
+<g id="Logo Components">
+<g id="masked_sun">
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="279" y="122" width="210" height="169">
+<path id="Vector 1" d="M279 198.5V122H488.5V290.5H449.5C449.5 290.5 379 231 347 250.5C344.5 213 279 198.5 279 198.5Z" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask0)">
+<circle id="sun" cx="376" cy="226.5" r="90" fill="#FFE898" stroke="#FFE898" stroke-width="25" stroke-linecap="round"/>
+</g>
+</g>
+<path id="gray_cloud" d="M346.5 250.5C340.5 204 283.522 187.146 249.522 217.146C202.522 134.146 60.5223 181.146 103.522 282.146C49.5223 287.146 30.5223 385.146 128.522 385.146H187" stroke="#F3F3F3" stroke-width="25" stroke-linecap="round"/>
+<path id="white_cloud" d="M216.85 347.121C170.35 362.621 180.85 427.621 229.85 427.621H426.35C503.85 427.621 510.85 333.121 451.35 323.621C466.35 253.621 352.85 209.621 316.35 280.621C266.35 241.621 190.35 290.121 216.85 347.121Z" stroke="white" stroke-width="25"/>
+</g>
+</g>
+</svg>
