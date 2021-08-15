@@ -1,3 +1,4 @@
+import { memo } from 'react';
 
 import convertDateToObject from "./modules/convertDateToObject";
 
@@ -5,17 +6,16 @@ import './DailyForecast.css';
 
 const DailyForecast = (props) => {
 
-    const { weatherData } = props;
-    const { daily: dailyForecastData, timezone_offset: timezoneOffset } = weatherData;
+    const { dailyData, timezoneOffset } = props;
 
     return (
         <>
             <h4>7-Day Forecast</h4>
             <div className="daily-forecast-wrapper">
-                {dailyForecastData.slice(1).map((dailyData, index) => {
-                    const {day: dailyDay, date: dailyDate, month: dailyMonth} = convertDateToObject(dailyData.dt, timezoneOffset);
-                    const {min: dailyMinTemp, max: dailyMaxTemp} = dailyData.temp;
-                    const [{description: dailyWeatherDesc, icon: dailyWeatherIcon}] = dailyData.weather;
+                {dailyData.slice(1).map((obj, index) => {
+                    const {day: dailyDay, date: dailyDate, month: dailyMonth} = convertDateToObject(obj.dt, timezoneOffset);
+                    const {min: dailyMinTemp, max: dailyMaxTemp} = obj.temp;
+                    const [{description: dailyWeatherDesc, icon: dailyWeatherIcon}] = obj.weather;
                     return(
                         <div className="daily-forecast-container" key={index}>
                             <div className="daily-forecast-date">
@@ -39,4 +39,4 @@ const DailyForecast = (props) => {
     )
 }
 
-export default DailyForecast
+export default memo(DailyForecast);
