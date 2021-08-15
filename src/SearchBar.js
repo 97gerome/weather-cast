@@ -1,6 +1,7 @@
 import { useMemo, memo } from 'react';
 import { useTransition, animated } from 'react-spring';
 import debounce from 'lodash.debounce';
+import TempUnitToggle from './TempUnitToggle';
 import SearchResults from './SearchResults';
 
 import './SearchBar.css'
@@ -10,7 +11,7 @@ const AnimatedSearchResults = animated(SearchResults);
 
 const SearchBar = (props) => {
 
-    const {setSearchItem, searchResults, setWeatherCoordinates, resultsVisibility} = props;
+    const {setSearchItem, searchResults, setWeatherCoordinates, resultsVisibility, tempUnit, setTempUnit} = props;
 
     const resultsTransition = useTransition(resultsVisibility, {
         from: { opacity: 0 },
@@ -35,6 +36,10 @@ const SearchBar = (props) => {
                     onChange={e => debouncedSetState(e.target.value)} 
                     placeholder="Search by City"
                     autoComplete="off"
+                />
+                <TempUnitToggle 
+                    tempUnit={tempUnit}
+                    setTempUnit={setTempUnit}
                 />
             </div>
             {resultsTransition((style, item) => 
