@@ -1,3 +1,4 @@
+import { memo } from 'react';
 
 import convertDateToObject from './modules/convertDateToObject';
 
@@ -5,14 +6,13 @@ import './HourlyForecast.css';
 
 const HourlyWeather = (props) => {
 
-    const { weatherData } = props;
-    const { hourly: hourlyForecastData, timezone_offset: timezoneOffset } = weatherData;
+    const { hourlyData, timezoneOffset } = props;
 
     return (
         <div className="hourly-forecast-wrapper">
-            {hourlyForecastData.slice(0, 24).map((hourlyData, index) => {
-                const {hour: hourlyTime, date: hourlyDate, month: hourlyMonth} = convertDateToObject(hourlyData.dt, timezoneOffset);
-                const [{icon: hourlyWeatherIcon}] = hourlyData.weather;
+            {hourlyData.slice(0, 24).map((obj, index) => {
+                const {hour: hourlyTime, date: hourlyDate, month: hourlyMonth} = convertDateToObject(obj.dt, timezoneOffset);
+                const [{icon: hourlyWeatherIcon}] = obj.weather;
                 return (
                     <div className="hourly-forecast-container" key={index}>
                         <div className="hourly-forecast-time">
@@ -22,7 +22,7 @@ const HourlyWeather = (props) => {
                             {hourlyDate}/{hourlyMonth}
                         </div>
                         <div className="hourly-forecast-details">
-                            {hourlyData.temp.toFixed(0)}°
+                            {obj.temp.toFixed(0)}°
                             <img src={`http://openweathermap.org/img/wn/${hourlyWeatherIcon}@2x.png`} alt={`hourly-forecast-icon-${index}`}/>
                         </div>
                     </div>
@@ -32,4 +32,4 @@ const HourlyWeather = (props) => {
     )
 }
 
-export default HourlyWeather
+export default memo(HourlyWeather);
