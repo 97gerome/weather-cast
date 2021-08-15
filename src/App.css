@@ -1,15 +1,28 @@
 .App {
+  position: relative;
   text-align: center;
+  background-color: hsl(200, 70%, 70%);
 }
 
 main{
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: calc(100vh - 80px);
   width: 100vw;
-  background-color: #76bee8;
+}
+
+.loader-wrapper{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 810px;
+  width: calc(30vw - 8px);
+  min-width: 350px;
+  overflow: hidden;
 }
 
 /* For browser height lower than 560px */
