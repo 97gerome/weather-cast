@@ -5,21 +5,10 @@ import './CurrentWeather.css';
 
 const CurrentWeather = (props) => {
 
-    const { weatherData, tempUnit } = props;
-    const { timezone_offset: timezoneOffset } = weatherData;
-
-    const {
-        dt: currentDt, 
-        temp: currentTemp, 
-        weather: currentWeather
-    } = weatherData.current || 
-    {
-        dt: "", 
-        temp: 0, 
-        weather: [{description: "", icon: "01d"}]
-    };
-    const {day: currentDay, date: currentDate, month: currentMonth} = convertDateToObject(currentDt, timezoneOffset);
-    const [{description: currentWeatherDesc, icon}] = currentWeather;
+    const { currentData, tempUnit, timezoneOffset } = props;
+    const { dt: currentDt, temp: currentTemp, weather: currentWeather } = currentData;
+    const { day: currentDay, date: currentDate, month: currentMonth } = convertDateToObject(currentDt, timezoneOffset);
+    const [ { description: currentWeatherDesc, icon } ] = currentWeather;
 
     return (
         <div className="current-weather-container">
