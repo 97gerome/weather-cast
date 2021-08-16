@@ -8,10 +8,11 @@ A web app created using React that provides current weather and temperature read
 # Animated Weather Cards
 weather-cast features dynamic backgrounds that change based on current time and weather conditions, which are animated using react-spring.
 
- <p align="left" display=""inline>
+ <p align="center">
   <img src="https://github.com/97gerome/weather-cast/blob/assets/animation_samples/weather-cast_clear_day.gif" height="300px">
+  <img src="https://github.com/97gerome/weather-cast/blob/assets/animation_samples/weather-cast_clear_night.gif" height="300px">
  </p>
-  <p align="center" display="inline">
+  <p align="center" display="center">
   <img src="https://github.com/97gerome/weather-cast/blob/assets/animation_samples/weather-cast_clear_night.gif" height="300px">
  </p>
   <p align="right" display="inline">
