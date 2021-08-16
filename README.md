@@ -11,10 +11,5 @@ weather-cast features dynamic backgrounds that change based on current time and 
  <p align="center">
   <img src="https://github.com/97gerome/weather-cast/blob/assets/animation_samples/weather-cast_clear_day.gif" height="300px">
   <img src="https://github.com/97gerome/weather-cast/blob/assets/animation_samples/weather-cast_clear_night.gif" height="300px">
- </p>
-  <p align="center" display="center">
-  <img src="https://github.com/97gerome/weather-cast/blob/assets/animation_samples/weather-cast_clear_night.gif" height="300px">
- </p>
-  <p align="right" display="inline">
   <img src="https://github.com/97gerome/weather-cast/blob/assets/animation_samples/weather-cast_cloudy.gif" height="300px">
  </p>
