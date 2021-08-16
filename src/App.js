@@ -20,7 +20,7 @@ function App() {
   const [weatherCoordinates, setWeatherCoordinates] = useState({lat: 14.6042, lon: 120.9822, loc: "Manila, PH"});
   const [weatherData, setWeatherData] = useState(null);
 
-  const urlGeo = `http://api.openweathermap.org/geo/1.0/direct?q=${searchItem}&limit=5&appid=${apiKey}`;
+  const urlGeo = `https://api.openweathermap.org/geo/1.0/direct?q=${searchItem}&limit=5&appid=${apiKey}`;
   const urlWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${weatherCoordinates.lat}&lon=${weatherCoordinates.lon}&units=${tempUnit}&appid=${apiKey}`;
 
   useEffect(() => {
