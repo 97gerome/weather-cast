@@ -9,7 +9,7 @@ weather-cast provides current weather and temperature readings, hourly weather a
 weather-cast features dynamic backgrounds that change based on current time and weather conditions, which are animated using react-spring.
 
  <p align="center">
-  <img src="https://github.com/97gerome/weather-cast/blob/assets/animation_samples/weather-cast_clear_day.gif" height="400px" width="300">
-  <img src="https://github.com/97gerome/weather-cast/blob/assets/animation_samples/weather-cast_clear_night.gif" height="400px" width="300">
-  <img src="https://github.com/97gerome/weather-cast/blob/assets/animation_samples/weather-cast_cloudy.gif" height="400px" width="300">
+  <img src="https://github.com/97gerome/weather-cast/blob/assets/animation_samples/weather-cast_clear_day.gif" height="400px" width="225">
+  <img src="https://github.com/97gerome/weather-cast/blob/assets/animation_samples/weather-cast_clear_night.gif" height="400px" width="225">
+  <img src="https://github.com/97gerome/weather-cast/blob/assets/animation_samples/weather-cast_cloudy.gif" height="400px" width="225">
  </p>
